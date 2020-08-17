@@ -25,6 +25,8 @@ public class StrategyDemo {
                 else return 0;
             }
         });
+
+
         System.out.println(Arrays.toString(dogs));
     }
 }
