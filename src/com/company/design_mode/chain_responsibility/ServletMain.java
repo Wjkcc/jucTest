@@ -11,9 +11,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ServletMain {
     public static void main(String[] args) {
         Request request = new Request();
-        request.request = "22222222222222d";
+        request.request = "22222222222d";
         Response response = new Response();
-        response.response = "22222222222333333333";
+        response.response = "2222222333333333";
         ServletFilterChain servletFilterChain = new ServletFilterChain();
         servletFilterChain.add(new HelloFilter01()).add(new HelloFilter02());
         servletFilterChain.doFilter(request,response,servletFilterChain);
@@ -87,7 +87,7 @@ class HelloFilter02 extends DetailFilter {
 
     @Override
     boolean doFilter(Response response) {
-        System.out.print("hello filter02 response  ");
+        System.out.print("hello filter02 response ");
         if (response.response.endsWith("1")) {
             System.out.println("22222");
             response.response = response.response.replace('1','3');
