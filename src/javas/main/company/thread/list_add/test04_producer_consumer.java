@@ -25,25 +25,26 @@ public class test04_producer_consumer {
                             lock.notify();
                             break;
                         }
-                    if(count < max) {
+                    while(count < max) {
                         String s = new Random().nextInt(1000)+"";
                         l.add(s);
                         count++;
                         modcount++;
+                        lock.notify();
                         System.out.println("add elements： " + s +"  count = "+count);
                         try {
                             TimeUnit.SECONDS.sleep(1);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                    }else{
+                    }
                         lock.notify();
                         try {
                             lock.wait();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                    }
+
                 }
 
             }
@@ -57,25 +58,26 @@ public class test04_producer_consumer {
                         lock.notify();
                         break;
                     }
-                    if(count > 0) {
+                    while(count > 0) {
                         String remove = l.remove(count-1);
                         System.out.println("get element"+remove);
                         count--;
                         modcount++;
+                        lock.notify();
                         try {
                             TimeUnit.SECONDS.sleep(1);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     }
-                    else {
+
                         lock.notify();
                         try {
                             lock.wait();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                    }
+
                 }
             }
             System.out.println("consumer is over");
