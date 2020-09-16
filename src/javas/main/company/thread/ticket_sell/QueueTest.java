@@ -17,6 +17,7 @@ public class QueueTest {
     }
 
     public static void main(String[] args) {
+        // 你好
         for (int i = 0; i < 10; i++) {
             new Thread(()->{
                 while(true) {
